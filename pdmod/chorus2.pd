@@ -1,0 +1,48 @@
+#N canvas 510 320 533 351 10;
+#X obj 375 36 loadbang;
+#X obj 375 55 f \$0;
+#X obj 27 14 inlet;
+#X obj 63 14 inlet;
+#X obj 99 14 inlet;
+#X obj 135 14 inlet;
+#X obj 171 14 inlet;
+#X obj 207 14 inlet;
+#X obj 243 14 inlet;
+#X obj 279 14 inlet;
+#X obj 101 103 cnv 15 157 85 empty empty chorus2_\$1 1 6 0 10 -241017
+-1 0;
+#X floatatom 147 134 5 0.1 100 0 slo_min #0-smn #1-smin;
+#X floatatom 181 134 5 0.1 100 1 fst_min #0-fmn #1-fmin;
+#X floatatom 147 152 5 0.1 100 0 slo_max #0-smx #1-smax;
+#X floatatom 181 152 5 0.1 100 1 fst_max #0-fmx #1-fmax;
+#X floatatom 147 170 5 0 1200 0 sl_dpth #0-sdp #1-sdep;
+#X floatatom 181 170 5 0 1200 1 fs_dpth #0-fdp #1-fdep;
+#X floatatom 147 116 5 0.01 100 0 pois #0-po #1-pois;
+#X floatatom 181 116 5 0 10000 1 min #0-mn #1-min;
+#X obj 27 33 s \$0-po;
+#X obj 63 52 s \$0-mn;
+#X obj 99 33 s \$0-smn;
+#X obj 135 52 s \$0-fmn;
+#X obj 171 33 s \$0-smx;
+#X obj 207 52 s \$0-fmx;
+#X obj 243 33 s \$0-sdp;
+#X obj 279 52 s \$0-fdp;
+#X obj 244 105 tgl 12 0 \$1-en go en -14 5 0 10 -262144 -1 -1 1 1;
+#X msg 375 74 \; \$1-po 0.1 \; \$1-mn 1000 \; \$1-smn 0.2 \; \$1-smx
+1 \; \$1-fmn 3 \; \$1-fmx 7 \; \$1-sdp 10 \; \$1-fdp 20 \;;
+#X text 98 265 Scott Nordlund \, 2011;
+#X text 98 283 Contact: limina@live.com.;
+#X text 99 302 Last revised: 08-03-2011.;
+#X text 98 232 Slow modulator is triangle wave \, fast is sine. Depth
+is in cents.;
+#X connect 0 0 1 0;
+#X connect 1 0 28 0;
+#X connect 2 0 19 0;
+#X connect 3 0 20 0;
+#X connect 4 0 21 0;
+#X connect 5 0 22 0;
+#X connect 6 0 23 0;
+#X connect 7 0 24 0;
+#X connect 8 0 25 0;
+#X connect 9 0 26 0;
+#X coords 0 -1 1 1 159 89 1 100 100;

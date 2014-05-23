@@ -1,0 +1,30 @@
+Helps for puredata drums synthesis
+
+[ead~] and [t3env~] are your friends for good envelopes, not [adsr~] which is better suited to non percussion instruments.
+
+All envelopes should be done at audio rate, not control rate for fast percussion to avoid nasty unpredictable clicks.
+
+Always band limit [noise~] sources as there's loads of high frequency stuff in there you cant even hear messing with your signals, I often pop a [lop~ 12000] in for good measure.
+
+Reset the phase of [osc~] and [phasor~] blocks by sending them a |0( message
+on each hit for a more consistent sond
+
+[biquad~] far better than [bp~] or [vcf~] for subtle tone control (less coloured and better for fast transients) if you have the patience to set up coefficients
+
+Cowbells etc, try ring mod and fm, the 808 bell contains a prominent perfect 5th
+
+Good woodblock obtained by firing a dirac pulse into a critically damped bp~ filter
+
+Syntax the Nerd (Chris?) already made some nice analog 606/808 style sounds, good to study.
+
+I made a half decent snare by getting the rattle in phase with the skin frequency here (http://obiwannabe.co.uk/padawan12/Electric-Drums.pd)
+
+Delay based physmo using chains of [vd~] will give you some great TomTom resonances if excited by a little burst of noise.
+
+Don't be scared of using plenty of  [clip~] blocks for jailing and limiting or you will most likely end up with sources that are much too lively in dynamics and always going over-level.
+
+Use [switch~] atoms to shut down the entire block computation when its not being used. Amazing how much CPU cycles you can reclaim by doing this.
+
+http://www.apo33.org/pub/puredata/APO/librairies_PD/recup/pitchnoise/
+http://www.pd-tutorial.com/english/ch03s09.html
+https://github.com/SMC-INESC/drumtranscription_pd

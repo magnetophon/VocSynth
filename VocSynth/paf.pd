@@ -1,0 +1,103 @@
+#N canvas 1026 47 1571 1012 10;
+#X obj 58 613 cos~;
+#X obj 58 590 *~;
+#X obj 101 613 cos~;
+#X obj 158 518 wrap~;
+#X obj 122 518 -~;
+#X obj 101 590 +~;
+#X obj 94 643 -~;
+#X obj 114 675 *~;
+#X obj 76 675 +~;
+#X obj 121 491 samphold~;
+#X text 119 383 center;
+#X text 236 326 fundamental;
+#X text 299 481 index;
+#X text 299 498 (percent);
+#X obj 244 584 *~;
+#X obj 244 561 cos~;
+#X obj 244 538 -~ 0.25;
+#X obj 244 607 +~ 100;
+#X obj 115 704 *~;
+#X text 151 702 <--ring mod step;
+#X text 276 655 waveshaper;
+#X text 445 811 updated for Pd version 0.37;
+#X text 117 395 frequency;
+#X text 37 41 Instead of using the two cosines as FM carrier oscillators
+\, we can use them as ring modulators for a natural or synthetic tone.
+Here we use waveshaping - to wit \, a sinusoid looking up a Gaussian
+bell curve. This has the nice properties that the partials are always
+positive cosines in phase \, and the spectrum spreads out smoothly
+as the index changes.;
+#X text 118 21 PAF: TWO-COSINE RING MODULATOR FOR WAVESHAPER;
+#X text 37 273 Then with ~* we do the ring modulation and we're done.
+This is the PAF (phase-aligned formant) synthesis algorithm (patented
+1993 by IRCAM).;
+#X obj 244 512 *~ 0.5;
+#X text 37 149 For phase coherency \, the waveshaper and the cosine
+pair are driven from the same phasor~ object. Since the waveshaping
+is done using a symmetric curve \, its output is at double the frequency
+of the input. So for each cycle of the phasor we compute a half-cycle
+of the sine function (by multiplying by 0.5 and subtracting 0.25 before
+the cosine lookup). We center the cosine output for lookup in a 200-point
+table containing a bell curve.;
+#X obj 115 776 outlet~;
+#X obj 482 523 inlet~ vol;
+#X obj 244 630 tabread4~ \$1-bell-curve;
+#X obj 30 390 inlet center;
+#X obj 215 348 r~ pafFundamental-\$1;
+#X obj 31 438 line~;
+#X obj 298 562 line~;
+#X obj 298 541 pack f 12;
+#X obj 115 744 *~;
+#X obj 646 522 r pafRmsRing-\$1;
+#X obj 298 518 r pafIndex-\$1;
+#X obj 31 417 pack f 30;
+#X obj 646 576 line~;
+#X obj 646 555 pack f 12;
+#X obj 563 616 *~;
+#X obj 645 599 *~ -1;
+#X obj 645 621 +~ 1;
+#X obj 562 659 *~;
+#X obj 562 523 r~ vocBP-\$2;
+#X connect 0 0 6 1;
+#X connect 0 0 8 0;
+#X connect 1 0 5 0;
+#X connect 1 0 0 0;
+#X connect 2 0 6 0;
+#X connect 3 0 4 1;
+#X connect 3 0 7 1;
+#X connect 4 0 1 1;
+#X connect 5 0 2 0;
+#X connect 6 0 7 0;
+#X connect 7 0 8 1;
+#X connect 8 0 18 0;
+#X connect 9 0 4 0;
+#X connect 9 0 3 0;
+#X connect 14 0 17 0;
+#X connect 15 0 14 0;
+#X connect 16 0 15 0;
+#X connect 17 0 30 0;
+#X connect 18 0 36 0;
+#X connect 26 0 16 0;
+#X connect 29 0 45 0;
+#X connect 30 0 18 1;
+#X connect 31 0 39 0;
+#X connect 32 0 26 0;
+#X connect 32 0 9 1;
+#X connect 32 0 5 1;
+#X connect 32 0 1 0;
+#X connect 33 0 9 0;
+#X connect 34 0 14 1;
+#X connect 35 0 34 0;
+#X connect 36 0 28 0;
+#X connect 37 0 41 0;
+#X connect 38 0 35 0;
+#X connect 39 0 33 0;
+#X connect 40 0 43 0;
+#X connect 40 0 42 1;
+#X connect 41 0 40 0;
+#X connect 42 0 36 1;
+#X connect 43 0 44 0;
+#X connect 44 0 45 1;
+#X connect 45 0 36 1;
+#X connect 46 0 42 0;
