@@ -1,10 +1,10 @@
-#N canvas 1026 47 1571 1012 10;
+#N canvas 1026 49 1571 1007 10;
 #X obj 286 254 sig~;
 #X obj 251 255 *~ 1;
 #X obj 286 23 inlet pitch;
 #X obj 214 23 inlet~ voc;
 #X obj 82 23 inlet~ limitedVoc;
-#N canvas 1026 47 1571 1012 dynamics 0;
+#N canvas 1026 49 1571 1007 dynamics 1;
 #X obj 535 587 inlet~;
 #X obj 535 688 *~;
 #X obj 536 731 outlet~;
@@ -12,7 +12,7 @@
 #X obj 873 293 + 1;
 #X obj 873 309 log;
 #X obj 873 325 / 1.89292;
-#N canvas 1026 47 1571 1012 1- 0;
+#N canvas 1026 49 1571 1007 1- 0;
 #X obj 93 24 inlet;
 #X obj 94 58 t b f;
 #X msg 88 93 1;
@@ -113,6 +113,7 @@
 #X connect 28 0 29 0;
 #X connect 29 0 30 0;
 #X connect 30 0 31 0;
+#X connect 31 0 18 0;
 #X connect 32 0 36 0;
 #X connect 33 0 22 0;
 #X connect 33 1 20 0;
